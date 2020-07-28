@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>LOVE</title>
+	<style>
+	@font-face {
+		font-family: "ero";
+		src: url("ero.ttf");
+	}
+	@font-face {
+		font-family: "dance";
+		src: url("dance.ttf");
+	}	
+    html { 
+        background: url('ero.jpg') no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }	
+	body {
+		width: 97%;
+		background-color: rgb(254, 26, 0, 0);
+	}
+	.btn {
+		  box-shadow: 1px 1px 0 rgba(255,255,255,0.5) inset;
+		  border-radius: 3px;
+		  border: 1px solid;
+		  display: inline-block;
+		  height: 150px;
+		  width: 150px;
+		  line-height: 150px;
+		  padding: 0 8px;
+		  position: relative;
+		  text-align: center; 
+		  font-size: 140px;
+		  text-decoration: none;
+		  text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+	}
+	.btn-counter { margin-right: 39px; }
+	.btn-counter:after,
+	.btn-counter:hover:after { text-shadow: none; }
+	.btn-counter:after {
+		  border-radius: 3px;
+		  border: 1px solid #d3d3d3;
+		  background-color: #eee;
+		  padding: 0 8px;
+		  color: #777;
+		  content: attr(data-count);
+		  left: 100%;
+		  margin-left: 8px;
+		  margin-right: -13px;
+		  position: absolute;
+		  top: -1px;
+	}
+	.btn-counter:before {
+		  transform: rotate(45deg);
+		  filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.7071067811865476, M12=-0.7071067811865475, M21=0.7071067811865475, M22=0.7071067811865476, sizingMethod='auto expand');
+
+		  background-color: #eee;
+		  border: 1px solid #d3d3d3;
+		  border-right: 0;
+		  border-top: 0;
+		  content: '';
+		  position: absolute;
+		  right: -13px;
+		  top: 5px;
+		  height: 6px;
+		  width: 6px;
+		  z-index: 1;
+		  zoom: 1;
+	}
+	.btn {
+		  background-color: #dbdbdb;
+		  border-color: #bbb;
+		  color: #666;
+	}
+	.btn:hover,
+	.btn.active {
+		  text-shadow: 0 1px 0 #b12f27;
+		  background-color: #f64136;
+		  border-color: #b12f27;
+	}
+	.btn:active { box-shadow: 0 0 5px 3px rgba(0,0,0,0.2) inset; }
+	.btn span { color: #f64136; }
+	.btn:hover, .btn:hover span,
+	.btn.active, .btn.active span { color: #eeeeee; }
+	.btn:active span {
+		  color: #b12f27;
+		  text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+	}
+	#divinfo{
+				z-index: 1001; 
+				width: 65%; 
+			    left:10px;
+				top:10px;
+				margin:auto;	
+				padding: 6px 8px 12px;
+				background: white;
+				background: rgba(255,255,255,0.95);
+				box-shadow: 0 0 15px rgba(0,0,0,0.2);
+				border-radius: 5px;
+				position: fixed; 
+	}
+	#xbuttonclose{
+		  background-color: #f44336;
+		  border: none;
+		  color: white;
+		  padding: 15px 32px;
+		  text-align: center;
+		  text-decoration: none;
+		  display: inline-block;
+		  font-size: 16px;
+		  margin: 4px 2px;
+		  cursor: pointer;
+	}
+	img {
+		  border-radius: 10px;
+	}	
+	</style>	
+  </head>
+  
+<body onload="divclose()">
+<a onclick="opendiv()" href="#"><img src="https://img.icons8.com/android/48/000000/info.png"/></a>
+<div id="divinfo" style="padding: 20px; font-family: 'dance', Times, serif; color: black; font-size: 40px;">
+	<div style="float:right; color: red;" ><button id="xbuttonclose" onclick="divclose();">x</button></div>
+	<p>¿Cómo jugar?</p>
+	<p style="font-size: 30px;">Por turnos, apretad el botón con forma de corazón para que muestre una serie de preliminares que os pondrán a 100.</p>
+	<p style="font-size: 30px;">Se recomienda realizar cada preliminar durante un par minutos.</p>
+	<p style="font-size: 30px;">Después de juguetear un poquito aparecerán las posturas que os llevarán al cielo.</p>
+	<p style="font-size: 30px;">Disfrutad. &#x2764;</p>
+</div>
+
+<b><p style="font-family: 'ero', Times, serif; color: white; text-align: center; font-size:80px;">Dados Eróticos</p></b>
+<br>
+<center><a onclick="myFunction()" href="#" title="Love it" class="btn" data-count="0"><span>&#x2764;</span></a></center>
+
+<p id="demo" style="font-family: 'dance', Times, serif; color: white; text-align: center; font-size: 60px;"></p>
+
+<center><img id="img" src="none.png" width="600" height="600"></img></center>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+
+function opendiv(){
+	$( "#divinfo" ).show();
+}
+function divclose(){
+	$( "#divinfo" ).hide();
+}
+divclose();
+
+var lista = [
+ {
+   "FIELD1": 1,
+   "FIELD2": "Bésale apasionadamente en los labios",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 2,
+   "FIELD2": "Bésale en los pezones",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 3,
+   "FIELD2": "Bésale en el cuello",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 4,
+   "FIELD2": "Bésale en la espalda",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 5,
+   "FIELD2": "Bésale donde quieras",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 6,
+   "FIELD2": "Recorre desde la boca hasta los genitales con los labios",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 7,
+   "FIELD2": "Estimúlale los genitales como quieras",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 8,
+   "FIELD2": "Estimúlale los genitales con la lengua",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 9,
+   "FIELD2": "Estimúlale los genitales con los labios",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 10,
+   "FIELD2": "Estimúlale un pezón mientras le besas los labios",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 11,
+   "FIELD2": "Estimúlale un pezón mientras le besas el cuello",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 12,
+   "FIELD2": "Estimúlale un pezón mientras le mordisqueas los labios",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 13,
+   "FIELD2": "Estimúlale un pezón mientras le mordisqueas una oreja",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 14,
+   "FIELD2": "Estimúlale un pezón mientras masturbas a tu pareja",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 15,
+   "FIELD2": "Estimúlale un pezón como quieras",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 16,
+   "FIELD2": "Estimúlale un pezón con los labios",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 17,
+   "FIELD2": "Estimúlale un pezón con la lengua",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 18,
+   "FIELD2": "Mordisquéale con suavidad un pezón",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 19,
+   "FIELD2": "Mordisquéale donde quieras",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 20,
+   "FIELD2": "Masturba a tu pareja con la lengua o boca",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 21,
+   "FIELD2": "Masturba a tu pareja con las manos",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 22,
+   "FIELD2": "Masturba a tu pareja como quieras",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 23,
+   "FIELD2": "Masturbaos uno delante del otro",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 24,
+   "FIELD2": "Mordisquéale con suavidad la oreja de tu pareja",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 25,
+   "FIELD2": "Estimúlale los pezones con hielo",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 26,
+   "FIELD2": "Estimúlale los genitales con hielo",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 27,
+   "FIELD2": "Tapa a tu pareja los ojos y tira de nuevo",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 28,
+   "FIELD2": "Tendrás los ojos tapados en las próximas 3 tiradas",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 29,
+   "FIELD2": "Tu pareja tendrá los ojos tapados en las próximas 3 tiradas",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 30,
+   "FIELD2": "Sólo podrás estimular con la lengua en la próximas 2 tiradas",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 31,
+   "FIELD2": "Sólo podrás estimular con los labios en la próximas 2 tiradas",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 32,
+   "FIELD2": "Tu pareja sólo podrá estimular con la lengua en la próximas 2 tiradas",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 33,
+   "FIELD2": "Tu pareja sólo podrá estimular con los labios en la próximas 2 tiradas",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 34,
+   "FIELD2": "Recorre con los labios los muslos y acaba estimulando los genitales",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 35,
+   "FIELD2": "Recorre con un hielo la espalda",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 36,
+   "FIELD2": "Recorre con un hielo los brazos",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 37,
+   "FIELD2": "Acaricia suavemente la espalda",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 38,
+   "FIELD2": "Acaricia suavemente los brazos",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 39,
+   "FIELD2": "Rasca con suavidad la espalda",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 40,
+   "FIELD2": "Rasca con suavidad los brazos",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 41,
+   "FIELD2": "Aprieta las nalgas de tu pareja con tus manos y pasión mientras la besas",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 42,
+   "FIELD2": "La mujer coloca los pechos delante de su pareja y esta la estimula",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 43,
+   "FIELD2": "El hombre coloca el pene delante de su pareja y esta lo estimula",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 44,
+   "FIELD2": "La mujer coloca la vagina delante de su pareja y esta la estimula",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 45,
+   "FIELD2": "El hombre coloca el pene entre los pechos de su pareja y esta lo estimula",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 46,
+   "FIELD2": "La mujer masajea con sus pechos la espalda de su pareja",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 47,
+   "FIELD2": "El hombre estimula con su pene la vagina de su pareja sin penetrar",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 48,
+   "FIELD2": "La mujer estimula con su vagina el pene de su pareja sin penetrar",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 49,
+   "FIELD2": "Utiliza algún sabor para lamer sus labios",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 50,
+   "FIELD2": "Utiliza algún sabor para lamer sus pezones",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 51,
+   "FIELD2": "Utiliza algún sabor para lamer sus genitales",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 52,
+   "FIELD2": "Utiliza algún sabor para lamer lo que te apetezca",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 53,
+   "FIELD2": "Pide a tu pareja que te estimule lo que te apetezca y como te apetezca",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 55,
+   "FIELD2": "Haced la postura del misionero",
+   "FIELD3": "misionero.png"}, 
+ {
+   "FIELD1": 55,
+   "FIELD2": "Haced la postura del misionero",
+   "FIELD3": "misionero.png"},
+ {
+   "FIELD1": 56,
+   "FIELD2": "Haced la postura del perrito",
+   "FIELD3": "perrito.png"},
+ {
+   "FIELD1": 57,
+   "FIELD2": "Haced la postura de la libélula",
+   "FIELD3": "libelula.png"},
+ {
+   "FIELD1": 58,
+   "FIELD2": "Haced la postura del ronroneo",
+   "FIELD3": "ronroneo.png"},
+ {
+   "FIELD1": 59,
+   "FIELD2": "Haced la postura de la cuchara",
+   "FIELD3": "cuchara.png"},
+ {
+   "FIELD1": 60,
+   "FIELD2": "Haced la postura de la amazona",
+   "FIELD3": "amazona.png"},
+ {
+   "FIELD1": 61,
+   "FIELD2": "Haced la postura de la fusión",
+   "FIELD3": "fusion.png"},
+ {
+   "FIELD1": 62,
+   "FIELD2": "Haced la postura de la flor de loto",
+   "FIELD3": "loto.png"}, 
+ {
+   "FIELD1": 63,
+   "FIELD2": "Haced la postura con penetración que más te guste",
+   "FIELD3": "none.png" },
+ {
+   "FIELD1": 64,
+   "FIELD2": "Haced la postura con penetración que más le guste a tu pareja",
+   "FIELD3": "none.png" }, 
+ {
+   "FIELD1": 65,
+   "FIELD2": "Copiad una postura del primer video porno veáis.",
+   "FIELD3": "none.png" },
+]
+var count = 0;
+var valor;
+
+var min = 12;
+var max = 65;
+var sval = 0;
+
+function myFunction() {
+
+	count = count + 1;
+	console.log(count)
+		if ( count < min ){ valor = Math.floor((Math.random() * 52) + 0); }
+		else if( count >= min && count <= max ){ valor = Math.floor(Math.random() * (65 - 53 + 1)) + 53; }
+		else { valor = Math.floor((Math.random() * 65) + 0); }
+		
+		if ( sval == valor && sval > 1 ){ valor = valor - 1 }
+		
+		sval = valor;
+	
+		if ( valor >= 28 &&  valor <= 33 ){min = min + 1; max = max + 1;} 
+		document.getElementById("demo").innerHTML = lista[valor].FIELD2;
+
+		document.getElementById("img").src = lista[valor].FIELD3;
+
+}
+</script>
+
+</body>
+</html>
