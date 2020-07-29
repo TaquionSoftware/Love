@@ -129,8 +129,10 @@
 	<p>¿Cómo jugar?</p>
 	<p style="font-size: 45px;">Por turnos, apretad el botón con forma de corazón para que muestre una serie de preliminares que os pondrán a 100.</p>
 	<p style="font-size: 45px;">Se recomienda realizar cada preliminar durante un par minutos.</p>
+	<p style="font-size: 45px;">También es recomendable tener a mano sabores, algunos hielos, vendas para cubrir los ojos y mucha, mucha imaginación.</p>	
 	<p style="font-size: 45px;">Después de juguetear un poquito aparecerán las posturas que os llevarán al cielo.</p>
 	<p style="font-size: 45px;">Disfrutad. &#x2764;</p>
+	<p style="font-size: 30px; text-align: right">&copy; TaquionSoftware</p>	
 </div>
 
 <b><p style="font-family: 'ero', Times, serif; color: white; text-align: center; font-size:80px;">Dados Eróticos</p></b>
@@ -425,7 +427,7 @@ function myFunction() {
 
 	count = count + 1;
 	console.log(count)
-		if ( count < min ){ valor = Math.floor((Math.random() * 52) + 0); }
+		if ( count < min ){ valor = Math.floor((Math.random() * 53) + 0); }
 		else if( count >= min && count <= max ){ valor = Math.floor(Math.random() * (65 - 53 + 1)) + 53; }
 		else { valor = Math.floor((Math.random() * 65) + 0); }
 		
@@ -433,7 +435,7 @@ function myFunction() {
 		
 		sval = valor;
 	
-		if ( valor >= 28 &&  valor <= 33 ){min = min + 1; max = max + 1;} 
+		if ( valor >= 27 &&  valor <= 33 ){min = min + 1; max = max + 1;} 
 		document.getElementById("demo").innerHTML = lista[valor].FIELD2;
 
 		document.getElementById("img").src = lista[valor].FIELD3;
